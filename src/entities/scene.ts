@@ -61,8 +61,11 @@ export abstract class Scene {
       await Assets.load({
         alias: asset.alias,
         src: asset.url,
-        data: asset.data || {},
-        ...(asset.url.includes(".atlas") && { loadParser: "loadTxt" }),
+        data: {
+          scaleMode: "linear",
+          autoGenerateMipMaps: true,
+        },
+        // ...(asset.url.includes(".atlas") && { loadParser: "loadTxt" }),
       });
 
       // Increment the count of loaded assets and update progress

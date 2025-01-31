@@ -24,7 +24,7 @@ export class Game extends Application {
       background: gameConfig.backgroundColor,
       resizeTo: window,
       antialias: true,
-      resolution: window.devicePixelRatio || 1,
+      resolution: 2,
       autoDensity: true,
       roundPixels: true,
     });
