@@ -36,6 +36,8 @@ export class GameManager {
       () => {
         if (this.gamePlayScene.board.state !== "readyForSpin") return;
 
+        increaseVolume(1, 1000, this.gamePlayScene.backgroundMusic);
+
         this.gamePlayScene.ui.spinButton.alpha = 0.6;
         this.gamePlayScene.ui.spinButton.interactive = false;
 
@@ -50,6 +52,8 @@ export class GameManager {
         if (this.gamePlayScene.board.state !== "spinning") return;
         this.gamePlayScene.ui.stopSpinButton.alpha = 0.6;
         this.gamePlayScene.ui.stopSpinButton.interactive = false;
+
+        decreaseVolume(0.3, 1000, this.gamePlayScene.backgroundMusic);
 
         // this.gamePlayScene.ui.spinButton.interactive = true;
         // this.gamePlayScene.ui.spinButton.alpha = 1;
@@ -109,4 +113,54 @@ export class GameManager {
       }
     );
   }
+}
+
+function increaseVolume(
+  targetVolume: number,
+  duration: number,
+  backgroundMusic: Howl
+): void {
+  const currentVolume: number = backgroundMusic.volume();
+  const steps: number = 50; // Number of steps for the volume change
+  const stepTime: number = duration / steps; // Time for each step in milliseconds
+  const volumeStep: number = (targetVolume - currentVolume) / steps; // Volume increment for each step
+
+  let currentStep = 0;
+
+  const interval = setInterval(() => {
+    currentStep++;
+    const newVolume = currentVolume + currentStep * volumeStep;
+    backgroundMusic.volume(newVolume);
+
+    // Stop increasing once the target volume is reached
+    if (currentStep >= steps || newVolume >= targetVolume) {
+      clearInterval(interval);
+      backgroundMusic.volume(targetVolume); // Ensure the target volume is exactly reached
+    }
+  }, stepTime);
+}
+
+function decreaseVolume(
+  targetVolume: number,
+  duration: number,
+  backgroundMusic: Howl
+): void {
+  const currentVolume: number = backgroundMusic.volume();
+  const steps: number = 50; // Number of steps for the volume change
+  const stepTime: number = duration / steps; // Time for each step in milliseconds
+  const volumeStep: number = (currentVolume - targetVolume) / steps; // Volume decrement for each step
+
+  let currentStep = 0;
+
+  const interval = setInterval(() => {
+    currentStep++;
+    const newVolume = currentVolume - currentStep * volumeStep;
+    backgroundMusic.volume(newVolume);
+
+    // Stop decreasing once the target volume is reached
+    if (currentStep >= steps || newVolume <= targetVolume) {
+      clearInterval(interval);
+      backgroundMusic.volume(targetVolume); // Ensure the target volume is exactly reached
+    }
+  }, stepTime);
 }

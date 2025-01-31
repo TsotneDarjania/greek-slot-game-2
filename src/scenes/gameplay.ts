@@ -5,12 +5,14 @@ import { Board } from "../board";
 import { CustomSprite } from "../global/customGameObjects/customSprite";
 import { UI } from "../ui";
 import { GameManager } from "../core/gameManager";
+import { Howl } from "howler";
 
 export class GamePlayScene extends Scene {
   background!: CustomSprite;
   ui!: UI;
   gameManager!: GameManager;
   board!: Board;
+  backgroundMusic!: Howl;
 
   constructor(game: Game, assets: SceneAssetsType) {
     super(game, assets);
@@ -22,6 +24,13 @@ export class GamePlayScene extends Scene {
     this.addBoard();
     this.addUI();
     this.createGameManager();
+
+    this.backgroundMusic = new Howl({
+      src: ["/assets/music.mp3"],
+      autoplay: true,
+      loop: true,
+      volume: 0.2,
+    });
   }
 
   createGameManager() {
