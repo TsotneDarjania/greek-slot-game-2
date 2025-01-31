@@ -98,5 +98,29 @@ export abstract class Scene {
     this.add(this.fixedBackground);
   }
 
+  getScale(scale: number) {
+    return this.fixedBackground !== undefined
+      ? this.fixedBackground.scale.x * scale
+      : scale;
+  }
+
+  getX(x: number) {
+    return this.fixedBackground !== undefined
+      ? this.fixedBackground.x -
+          (this.fixedBackground.texture.width * this.fixedBackground.scale.x) /
+            2 +
+          x * this.fixedBackground.texture.width * this.fixedBackground.scale.x
+      : x;
+  }
+
+  getY(y: number) {
+    return this.fixedBackground !== undefined
+      ? this.fixedBackground.y -
+          (this.fixedBackground.texture.height * this.fixedBackground.scale.y) /
+            2 +
+          y * this.fixedBackground.texture.height * this.fixedBackground.scale.y
+      : y;
+  }
+
   abstract start(): void;
 }

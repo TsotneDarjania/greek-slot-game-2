@@ -11,6 +11,15 @@ export enum GamePLayObjectNames {
   Crown = "crown",
   BackgroundImage = "backgroundImage",
   defaultWhiteImage = "defaultWhiteImage",
+  uiBackground = "uiBackground",
+  spinButton = "spinButton",
+  balanceIndicator = "balanceIndicator",
+  soundIndicator = "soundIndicator",
+  menuButton = "menuButton",
+  chooseBetButtonBackground = "chooseBetButtonBackground",
+  chooseBetButtonArrow = "chooseBetButtonArrow",
+  betOptionsBackground = "betOptionsBackground",
+  stopSpinButton = "stopSpinButton",
 }
 
 export const gamePlayAssets: SceneAssetsType = [
@@ -155,6 +164,78 @@ export const gamePlayAssets: SceneAssetsType = [
   {
     alias: GamePLayObjectNames.defaultWhiteImage,
     url: "../assets/images/default-white-image.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.uiBackground,
+    url: "../assets/images/ui-background.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.spinButton,
+    url: "../assets/images/spin-button.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.balanceIndicator,
+    url: "../assets/images/balance-indicator.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.soundIndicator,
+    url: "../assets/images/sound-indicator.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.menuButton,
+    url: "../assets/images/menu-button.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.chooseBetButtonBackground,
+    url: "../assets/images/choose-bet-button-background.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.chooseBetButtonArrow,
+    url: "../assets/images/choose-bet-button-arrow.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.betOptionsBackground,
+    url: "../assets/images/bet-options-background.png",
+    data: {
+      scaleMode: "linear",
+      autoGenerateMipMaps: true,
+    },
+  },
+  {
+    alias: GamePLayObjectNames.stopSpinButton,
+    url: "../assets/images/stop-spin-button.png",
     data: {
       scaleMode: "linear",
       autoGenerateMipMaps: true,

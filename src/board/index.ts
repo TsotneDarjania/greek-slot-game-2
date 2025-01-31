@@ -1,4 +1,4 @@
-import { Container, Graphics } from "pixi.js";
+import { Container, EventEmitter, Graphics } from "pixi.js";
 import { Reel } from "./reel";
 import { ReelStatusEvents, SymbolStatusEvents } from "./enums";
 import { SlotSymbol } from "./reel/slotSymbol";
@@ -23,6 +23,8 @@ export type boardWinningType = {
 };
 
 export class Board extends Container {
+  eventEmitter!: EventEmitter;
+
   state: "readyForSpin" | "startSpin" | "spinning" | "FinishedSpin" =
     "readyForSpin";
   command: "none" | "stop" = "none";
@@ -47,6 +49,8 @@ export class Board extends Container {
   ) {
     super({ x: posX, y: posY });
 
+    this.eventEmitter = new EventEmitter();
+
     if (!this.validate()) return;
 
     this.symbolBoxWidth = displayWidth / boardData.reelsCount;
@@ -54,8 +58,6 @@ export class Board extends Container {
 
     this.slotSymbolWidth = Math.min(this.symbolBoxWidth, this.symbolBoxHeight);
     this.slotSymbolHeight = this.slotSymbolWidth;
-
-    console.log("Slot Symbol Width Is : " + this.slotSymbolWidth);
 
     this.init();
   }
@@ -100,6 +102,7 @@ export class Board extends Container {
       reel.spinManager.eventEmitter.on(ReelStatusEvents.SpinIsStarted, () => {
         if (reel === this.reels[this.reels.length - 1]) {
           this.state = "spinning";
+          this.eventEmitter.emit("spinIsStarted");
           if (this.command === "stop") {
             this.stopSpin();
           }
@@ -131,7 +134,9 @@ export class Board extends Container {
       this.resultCombination = undefined;
       this.command = "none";
       this.state = "readyForSpin";
-    }, 1000);
+
+      this.eventEmitter.emit("spinIsFinished");
+    }, 100);
   }
 
   private async showWinningAnimations() {

@@ -3,7 +3,6 @@ import { Board } from "..";
 import { SlotSymbol } from "./slotSymbol";
 import { SpinManager } from "../spinManager";
 import { GlowFilter } from "pixi-filters";
-import gsap from "gsap";
 
 export class Reel extends Container {
   glowFilter!: GlowFilter;
@@ -42,39 +41,37 @@ export class Reel extends Container {
   }
 
   addGlowEffect() {
-    this.glowFilter = new GlowFilter({
-      distance: 24,
-      innerStrength: 1, // Start from 0 for animation
-      outerStrength: 35, // Start from 0 for animation
-      color: "#F5BB8A",
-      quality: 0.1,
-      alpha: 0, // Start from 0 for animation
-    });
-
-    // Add the filter to the object
-    this.filters = [this.glowFilter];
-
-    // Animate the filter properties with GSAP
-    gsap.to(this.glowFilter, {
-      innerStrength: 5,
-      outerStrength: 5,
-      alpha: 0.2,
-      delay: 0.4,
-      duration: 1.7, // Animation duration in seconds
-      ease: "power2.out", // Choose the easing function
-    });
+    // this.glowFilter = new GlowFilter({
+    //   distance: 24,
+    //   innerStrength: 1, // Start from 0 for animation
+    //   outerStrength: 35, // Start from 0 for animation
+    //   color: "#F5BB8A",
+    //   quality: 0.1,
+    //   alpha: 0, // Start from 0 for animation
+    // });
+    // // Add the filter to the object
+    // this.filters = [this.glowFilter];
+    // // Animate the filter properties with GSAP
+    // gsap.to(this.glowFilter, {
+    //   innerStrength: 5,
+    //   outerStrength: 5,
+    //   alpha: 0.2,
+    //   delay: 0.4,
+    //   duration: 1.7, // Animation duration in seconds
+    //   ease: "power2.out", // Choose the easing function
+    // });
   }
 
   removeGlowEffect() {
     // Animate the filter properties with GSAP
-    gsap.to(this.glowFilter, {
-      innerStrength: 5,
-      outerStrength: 5,
-      alpha: 0,
-      delay: 0.2,
-      duration: 1.7, // Animation duration in seconds
-      ease: "power2.out", // Choose the easing function
-    });
+    // gsap.to(this.glowFilter, {
+    //   innerStrength: 5,
+    //   outerStrength: 5,
+    //   alpha: 0,
+    //   delay: 0.2,
+    //   duration: 1.7, // Animation duration in seconds
+    //   ease: "power2.out", // Choose the easing function
+    // });
   }
 
   private initSymbols() {

@@ -30,6 +30,15 @@ export class SlotSymbol extends Container {
     this.spine.width = calculatePercentage(70, displayWidth) - padding;
     this.spine.height = calculatePercentage(70, displayWidth) - padding;
 
+    // const spineWidth = this.spine.width;
+    // const spineHeight = this.spine.height;
+    // const scaleX = this.displayWidth / spineWidth;
+    // const scaleY = this.displayHeight / spineHeight;
+    // let scale = Math.min(scaleX, scaleY);
+    // const scaleReductionFactor = 0.6;
+    // scale *= scaleReductionFactor;
+    // this.spine.scale = scale;
+
     this.spine.state.setAnimation(0, "Static", true);
 
     this.addChild(this.spine);

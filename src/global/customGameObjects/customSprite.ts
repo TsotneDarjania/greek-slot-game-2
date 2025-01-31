@@ -1,4 +1,9 @@
-import { Sprite, Texture } from "pixi.js";
+import {
+  FederatedEventMap,
+  GlobalFederatedEventMap,
+  Sprite,
+  Texture,
+} from "pixi.js";
 
 export class CustomSprite extends Sprite {
   constructor(
@@ -12,4 +17,18 @@ export class CustomSprite extends Sprite {
 
     this.anchor = 0.5;
   }
+
+  addInteractiveEvenet(
+    type: keyof FederatedEventMap | keyof GlobalFederatedEventMap,
+    callBack: Function
+  ) {
+    this.interactive = true;
+    this.addEventListener(type, () => {
+      callBack();
+    });
+  }
+
+  disable() {}
+
+  enable() {}
 }

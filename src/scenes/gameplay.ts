@@ -3,9 +3,14 @@ import { Scene, SceneAssetsType } from "../entities/scene";
 import { GamePLayObjectNames } from "../config/loadConfig";
 import { Board } from "../board";
 import { CustomSprite } from "../global/customGameObjects/customSprite";
+import { UI } from "../ui";
+import { GameManager } from "../core/gameManager";
 
 export class GamePlayScene extends Scene {
   background!: CustomSprite;
+  ui!: UI;
+  gameManager!: GameManager;
+  board!: Board;
 
   constructor(game: Game, assets: SceneAssetsType) {
     super(game, assets);
@@ -15,6 +20,12 @@ export class GamePlayScene extends Scene {
   start(): void {
     this.addBackgorund();
     this.addBoard();
+    this.addUI();
+    this.createGameManager();
+  }
+
+  createGameManager() {
+    this.gameManager = new GameManager(this);
   }
 
   addBackgorund() {
@@ -26,46 +37,45 @@ export class GamePlayScene extends Scene {
     this.setFixedBackground(this.background);
   }
 
+  addUI() {
+    this.ui = new UI(this);
+    this.ui.scale = this.getScale(1.08);
+    this.ui.x = this.getX(0.5);
+    this.ui.y = this.getY(1) - this.ui.background.getBounds().height / 2;
+  }
+
   addBoard() {
-    console.log("Screen Height " + this.height);
     // Limitaions
     // 1. width and height of source images should be same
-    const board = new Board(this.width / 2, this.height / 2 + 5, 420, 380, {
+    this.board = new Board(this.width / 2, this.height / 2 + 5, 425, 390, {
       reelsCount: 3,
       symbolsPerReel: 3,
-      spinDelayBetweenReels: 400, // in miliseconds
+      spinDelayBetweenReels: 200, // in miliseconds
       symbolKeys: [
         GamePLayObjectNames.Arpha,
-        // GamePLayObjectNames.Coin,
-        GamePLayObjectNames.Crown,
-        // GamePLayObjectNames.Ring_1,
-        // GamePLayObjectNames.Ring_2,
+        GamePLayObjectNames.Coin,
+        // GamePLayObjectNames.Crown,
+        GamePLayObjectNames.Ring_1,
+        GamePLayObjectNames.Ring_2,
         // GamePLayObjectNames.Ring_3,
-        // GamePLayObjectNames.Ring_4,
+        GamePLayObjectNames.Ring_4,
         // GamePLayObjectNames.Wine,
       ],
       initCombination: [
-        [0, 1, 0],
-        [0, 0, 0],
+        [0, 1, 2],
+        [3, 4, 0],
         [0, 0, 0],
       ],
       config: {
         symbolTextureOriginalWidth: 530,
         symbolTextureOriginalHeight: 964,
       },
-      padding: 20,
-      spinDuration: 0.13,
+      padding: 6,
+      spinDuration: 0.16,
       spinStyle: "classic",
     });
-    this.add(board);
+    this.add(this.board);
 
-    window.addEventListener("pointerdown", () => {
-      board.startSpin();
-      board.stopSpin([
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-      ]);
-    });
+    this.board.scale = this.getScale(3.6);
   }
 }

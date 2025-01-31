@@ -5,13 +5,21 @@ export class CustomText extends Text {
     public innerText: string,
     public xPos: number,
     public yPos: number,
-    public fontFamily?: string
+    public styleData?: {
+      fontFamily?: string;
+      fontSize?: string;
+      color?: string
+    }
   ) {
     super({ text: innerText });
     this.x = xPos;
     this.y = yPos;
     this.anchor = 0.5;
 
-    this.style.fontFamily = fontFamily ? fontFamily : "";
+    if (styleData) {
+      this.style.fontFamily = styleData.fontFamily ? styleData.fontFamily : "";
+      this.style.fontSize = styleData.fontSize ? styleData.fontSize : "1";
+      this.style.fill = styleData.color ? styleData.color : "black";
+    }
   }
 }
