@@ -47,7 +47,7 @@ export class GamePlayScene extends Scene {
   addBoard() {
     // Limitaions
     // 1. width and height of source images should be same
-    this.board = new Board(this.width / 2, this.height / 2 + 5, 425, 390, {
+    this.board = new Board(this.width / 2 - 3, this.height / 2 + 5, 425, 380, {
       reelsCount: 3,
       symbolsPerReel: 3,
       spinDelayBetweenReels: 200, // in miliseconds
@@ -59,12 +59,12 @@ export class GamePlayScene extends Scene {
         GamePLayObjectNames.Ring_2,
         // GamePLayObjectNames.Ring_3,
         GamePLayObjectNames.Ring_4,
-        // GamePLayObjectNames.Wine,
+        GamePLayObjectNames.Wine,
       ],
       initCombination: [
-        [0, 1, 2],
+        [5, 1, 2],
         [3, 4, 0],
-        [0, 0, 0],
+        [0, 5, 0],
       ],
       config: {
         symbolTextureOriginalWidth: 530,

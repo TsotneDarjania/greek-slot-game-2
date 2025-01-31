@@ -5,6 +5,8 @@ import { GameEvenetEnums } from "../enums/gameEventEnums";
 export class GameManager {
   eventEmitter!: EventEmitter;
 
+  count = 0;
+
   constructor(public gamePlayScene: GamePlayScene) {
     this.eventEmitter = new EventEmitter();
 
@@ -55,19 +57,55 @@ export class GameManager {
         // this.gamePlayScene.ui.stopSpinButton.interactive = false;
         // this.gamePlayScene.ui.stopSpinButton.alpha = 0;
 
-        this.gamePlayScene.board.stopSpin(
-          [
-            [0, 0, 0],
-            [2, 3, 0],
-            [1, 1, 1],
-          ],
-          {
-            lines: [
-              [0, 0, 0],
-              [1, 1, 1],
+        this.count++;
+
+        if (this.count === 1) {
+          this.gamePlayScene.board.stopSpin([
+            [0, 4, 2],
+            [2, 2, 3],
+            [1, 1, 5],
+          ]);
+
+          return;
+        }
+        if (this.count === 2) {
+          this.gamePlayScene.board.stopSpin(
+            [
+              [5, 4, 0],
+              [2, 5, 0],
+              [1, 1, 5],
             ],
-          }
-        );
+            {
+              lines: [[0, 1, 2]],
+            }
+          );
+
+          return;
+        }
+        if (this.count === 3) {
+          this.gamePlayScene.board.stopSpin([
+            [0, 4, 2],
+            [2, 2, 3],
+            [1, 1, 5],
+          ]);
+
+          return;
+        }
+        if (this.count === 4) {
+          this.gamePlayScene.board.stopSpin([
+            [0, 4, 2],
+            [2, 2, 3],
+            [1, 1, 5],
+          ]);
+
+          return;
+        }
+
+        this.gamePlayScene.board.stopSpin([
+          [0, 4, 2],
+          [2, 2, 3],
+          [1, 1, 5],
+        ]);
       }
     );
   }
