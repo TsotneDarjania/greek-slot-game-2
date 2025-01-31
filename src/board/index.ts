@@ -126,10 +126,12 @@ export class Board extends Container {
   }
 
   private reset() {
-    this.winnings = undefined;
-    this.resultCombination = undefined;
-    this.command = "none";
-    this.state = "readyForSpin";
+    setTimeout(() => {
+      this.winnings = undefined;
+      this.resultCombination = undefined;
+      this.command = "none";
+      this.state = "readyForSpin";
+    }, 1000);
   }
 
   private async showWinningAnimations() {
