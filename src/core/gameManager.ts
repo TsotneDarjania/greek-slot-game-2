@@ -36,7 +36,7 @@ export class GameManager {
       () => {
         if (this.gamePlayScene.board.state !== "readyForSpin") return;
 
-        increaseVolume(1, 1000, this.gamePlayScene.backgroundMusic);
+        increaseVolume(1, 2000, this.gamePlayScene.backgroundMusic);
 
         this.gamePlayScene.ui.spinButton.alpha = 0.6;
         this.gamePlayScene.ui.spinButton.interactive = false;
@@ -53,7 +53,7 @@ export class GameManager {
         this.gamePlayScene.ui.stopSpinButton.alpha = 0.6;
         this.gamePlayScene.ui.stopSpinButton.interactive = false;
 
-        decreaseVolume(0.3, 1000, this.gamePlayScene.backgroundMusic);
+        decreaseVolume(0.3, 2000, this.gamePlayScene.backgroundMusic);
 
         // this.gamePlayScene.ui.spinButton.interactive = true;
         // this.gamePlayScene.ui.spinButton.alpha = 1;
