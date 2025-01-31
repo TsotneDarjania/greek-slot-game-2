@@ -1,0 +1,27 @@
+coini.png
+size:1359,440
+filter:Linear,Linear
+pma:true
+scale:0.5
+Layer 10
+bounds:1023,7,216,272
+rotate:90
+Layer 11
+bounds:2,2,456,436
+offsets:1,1,458,438
+Layer 111
+bounds:1297,152,71,60
+offsets:1,1,73,62
+rotate:90
+Layer 12
+bounds:460,22,416,391
+offsets:0,1,416,393
+rotate:90
+Layer 121
+bounds:853,52,386,168
+offsets:1,1,390,170
+rotate:90
+Layer 9
+bounds:1023,225,213,308
+offsets:1,1,214,309
+rotate:90
